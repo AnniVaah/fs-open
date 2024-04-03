@@ -1,9 +1,19 @@
-const Numbers = ({personsToShow}) => {
+const Numbers = ({personsToShow, personService}) => {
+    const deleteThis = (id) => {
+        console.log("DeleteThis: ", id)
+        personService
+          .deleteOne(id)
+          //.then(() => {
+          //  setPersons(persons.filter(person => person.id !==id))
+          //})
+    }
+    
     const OneNumber = (person) => {
         console.log("OneNumber", person.id)
         return(
             <p key={person.name}>
-            {person.name} {person.number} 
+                {person.name} {person.number} 
+                <button onClick={() => deleteThis(person.id)}>Delete</button>
             </p>
         )
     }
@@ -18,4 +28,3 @@ const Numbers = ({personsToShow}) => {
 
 export default Numbers
 
-//<button onClick={() => deleteThis(person.id)}>Delete</button>

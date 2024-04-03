@@ -4,16 +4,6 @@ import FilterForm from './components/FilterForm'
 import AddForm from './components/AddForm'
 import Numbers from './components/Numbers'
 
-//const deleteThis = (id) => {
-//  console.log("DeleteThis: ", id)
-//  personService
-//    .deleteOne(id)
-//    .then(response => {
-//      setPersons(persons.filter(person => person.id !==id))
-//    })
-//}
-
-
 const App = () => {
   const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
@@ -70,7 +60,7 @@ const App = () => {
         handleNumberChange={handleNumberChange} 
       />
       <h3>Numbers</h3>
-      <Numbers personsToShow={personsToShow}/>
+      <Numbers personsToShow={personsToShow} personService={personService}/>
     </div>
   )
 
