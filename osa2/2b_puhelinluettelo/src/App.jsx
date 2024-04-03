@@ -16,6 +16,14 @@ const App = () => {
     })
   }, [])
 
+  const replaceNumber = (person, number) => {
+    console.log("replace ", person, number)
+    const changedPerson = {...person, number:number}
+    console.log(changedPerson)
+    //TÄHÄN VIELÄ PALVELIMELLE VIENTI JA KENTTIEN PÄIVITYS 
+    //(LUO persons.js:ään PUT-funktio JA KUTSU SITÄ)
+  }
+
   const addNumber = (event) => {
     event.preventDefault()
     const personObject = {
@@ -23,7 +31,14 @@ const App = () => {
       number: newNumber
     }
     if (persons.some(person => person.name === newName)) {
-      alert(`${newName} is already added to phonebook`)}
+      if (window.confirm(
+        `${newName} is already added to phonebook. Replace the old number with a new one?`
+      )){
+        console.log("korvattava", newName)
+        const thisPerson = persons.find(person => person.name ===newName)
+        replaceNumber(thisPerson, newNumber)
+      }
+    }
     else{
       personService
         .create(personObject)
