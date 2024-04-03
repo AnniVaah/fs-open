@@ -60,7 +60,11 @@ const App = () => {
         handleNumberChange={handleNumberChange} 
       />
       <h3>Numbers</h3>
-      <Numbers personsToShow={personsToShow} personService={personService}/>
+      <Numbers 
+        personsToShow={personsToShow} 
+        personService={personService}
+        setPersons={setPersons}
+        persons={persons}/>
     </div>
   )
 
