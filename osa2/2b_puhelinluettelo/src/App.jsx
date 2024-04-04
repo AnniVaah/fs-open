@@ -25,9 +25,24 @@ const App = () => {
       .update(person.id, changedPerson)
       .then(returnedPerson => {
         setPersons(persons.map(person => person.name !== changedPerson.name ? person : returnedPerson))
+        setNewName('')
+        setNewNumber('')
+        setConfirmMessage(`The phone number of ${newName} has been updated.`)
+        setTimeout(() => {
+          setConfirmMessage(null)
+        }, 5000)
       })
-      setNewName('')
-      setNewNumber('')
+      .catch(error => {
+        console.log('error detected', error)
+        setErrorMessage(`Information of ${changedPerson.name} has already been removed from the server.`)
+        setTimeout(() => {
+          setErrorMessage(null)
+        }, 5000)
+        personService.getAll().then(persons => {
+          setPersons(persons)
+        })
+      }
+    )
   }
 
   const addNumber = (event) => {
@@ -42,10 +57,6 @@ const App = () => {
       )){
         const thisPerson = persons.find(person => person.name ===newName)
         replaceNumber(thisPerson, newNumber)
-        setConfirmMessage(`The phone number of ${newName} has been updated.`)
-        setTimeout(() => {
-          setConfirmMessage(null)
-        }, 5000)
       }
     }
     else{
