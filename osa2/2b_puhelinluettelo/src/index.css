@@ -1,0 +1,28 @@
+h1, h2, h3 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color:rgb(135, 0, 133)
+}
+
+.numbers td {
+    padding: 8px
+}
+
+.error {
+    color: red;
+    background: rgb(241, 241, 241);
+    font-size: 20px;
+    border-style: solid;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+.confirm {
+    color: rgb(0, 132, 81);
+    background: rgb(241, 241, 241);
+    font-size: 20px;
+    border-style: solid;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }

@@ -3,12 +3,15 @@ import personService from './services/persons'
 import FilterForm from './components/FilterForm'
 import AddForm from './components/AddForm'
 import Numbers from './components/Numbers'
+import Notification from './components/Notification'
 
 const App = () => {
   const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [filterText, setFilterText] = useState('')
+  const [errorMessage, setErrorMessage] = useState(null)
+  const [confirmMessage, setConfirmMessage] = useState(null)
 
   useEffect(() => {
     personService.getAll().then(initialPersons => {
@@ -39,6 +42,10 @@ const App = () => {
       )){
         const thisPerson = persons.find(person => person.name ===newName)
         replaceNumber(thisPerson, newNumber)
+        setConfirmMessage(`The phone number of ${newName} has been updated.`)
+        setTimeout(() => {
+          setConfirmMessage(null)
+        }, 5000)
       }
     }
     else{
@@ -49,6 +56,10 @@ const App = () => {
         })
       setNewName('')
       setNewNumber('')
+      setConfirmMessage(`Added ${newName}.`)
+        setTimeout(() => {
+          setConfirmMessage(null)
+        }, 5000)
     }
   }
 
@@ -66,7 +77,9 @@ const App = () => {
 
   return (
     <div>
-      <h2>Phonebook</h2>
+      <h1>Phonebook</h1>
+      <Notification message={errorMessage} isError={true} />
+      <Notification message={confirmMessage} isError={false} />
       <FilterForm handleFilterChange={handleFilterChange}/>
       <h3>Add a new number</h3>
       <AddForm 
@@ -81,7 +94,8 @@ const App = () => {
         personsToShow={personsToShow} 
         personService={personService}
         setPersons={setPersons}
-        persons={persons}/>
+        persons={persons}
+        setConfirmMessage={setConfirmMessage}/>
     </div>
   )
 

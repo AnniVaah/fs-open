@@ -3,14 +3,14 @@ const AddForm = ({addNumber, newName, handleNameChange, newNumber, handleNumberC
     return(
       <form onSubmit={addNumber}>
           <div>
-            name: 
+            <label>Name: </label>
             <input 
               value={newName}
               onChange={handleNameChange}
             />
           </div>
           <div>
-            number:
+            <label>Number: </label>
             <input
               value={newNumber}
               onChange={handleNumberChange}
