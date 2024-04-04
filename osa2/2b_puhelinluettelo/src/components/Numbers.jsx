@@ -1,7 +1,6 @@
 const Numbers = ({personsToShow, personService, setPersons, persons}) => {
     const deleteThis = (id) => {
         const thisPerson = persons.find(person => person.id ===id)
-        console.log("DeleteThis: ", thisPerson.name)
         if (window.confirm(`Delete ${thisPerson.name}?`)){
             personService
             .deleteOne(id)
@@ -13,7 +12,6 @@ const Numbers = ({personsToShow, personService, setPersons, persons}) => {
     }
     
     const OneNumber = (person) => {
-        console.log("OneNumber", person.id)
         return(
             <p key={person.name}>
                 {person.name} {person.number}  
