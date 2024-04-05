@@ -6,7 +6,8 @@ import CountryList from './components/CountryList.jsx'
 const App = () => {
   const [countryNames, setCountryNames] = useState([])
   const [filterText, setFilterText] = useState('')
-  const [countriesToShow, setCountriesToShow] = useState([])
+  const [countriesToShow, setCountriesToShow] = useState(["Finland"])
+  const [countryData, setCountryData] = useState([])
 
   const handleFilterChange = (event) => {
     const newFilterText=event.target.value
@@ -24,15 +25,28 @@ const App = () => {
       setCountryNames(allData.map(country => country.name.common))
     })
   }, [])
-  console.log(countriesToShow)
+
+  useEffect(()=>{
+    console.log('effect2')
+    if (countriesToShow.length === 1){
+      countryService
+        .getOne(countriesToShow[0])
+        .then(cData => {
+          setCountryData(cData)
+        })
+    }
+  },[countriesToShow])
+  //console.log("Muuttuiko?",countriesToShow)
+  console.log("Muuttuiko?",countryData)
+
   return (
     <>
       <h1>Country Info</h1>
       <FilterForm handleFilterChange = {handleFilterChange} />
-      <CountryList countriesToShow = {countriesToShow} />
-      {/* <ul className='countries'>
-        {countriesToShow.map(country => <li key={country}>{country}</li>)}
-      </ul> */}
+      <CountryList 
+        countriesToShow = {countriesToShow} 
+        countryData={countryData} 
+      />
     </>
   )
 }

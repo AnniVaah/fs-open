@@ -1,6 +1,5 @@
-//const CountryList = ({countriesToShow, personService, setPersons, persons, setConfirmMessage}) => {
-const CountryList = ({countriesToShow}) => {
-    console.log(countriesToShow)
+const CountryList = ({countriesToShow, countryData}) => {
+    //console.log(countriesToShow)
     if (countriesToShow.length>=10){
       console.log("yli kymmenen", countriesToShow)
       return(
@@ -18,20 +17,13 @@ const CountryList = ({countriesToShow}) => {
     else if (countriesToShow.length===1){
       const countryToShow=countriesToShow[0]
       console.log("yksi löytyi:", countryToShow)
-    //console.log("Got country info?: ", countryInfo)
-    //   const info = countryService.getOne(countryToShow)
-    //   if (countryInfo!==info){
-    //     setCountryInfo(info)
-    //   }
-      
-    //   console.log("Got country info: ", countryInfo)
-  
-    //   return(
-    //     <>
-    //       <p>One country found: {countryToShow}</p>
-    //       {/* <PrintCountryInfo countryToShow={countryToShow} setCountryInfo={setCountryInfo} countryInfo={countryInfo}/> */}
-    //     </> 
-    //   )
+      console.log('countrydata', countryData)
+      //countryService.getOne(countryToShow).then(response => {
+        //console.log('thenin sisältä:',response.capital[0]) //tässä oikea data
+        //countryData = cData.data //tämä ei näy ulos!!
+        //setCountryData(cData.data) //tämä aiheutti luupin
+        //return(<p>{cData.data.capital[0]}</p>)//Nothing happens
+      //})
     }
      
    const OneCountry = (country) => {
@@ -39,12 +31,12 @@ const CountryList = ({countriesToShow}) => {
                 <li key={country}>{country}</li>
         )
     } 
-    return(
+    //return(
       // <ul className='countries'>
       //   {countriesToShow.map(country => OneCountry(country))}
       // </ul>
-      <></>
-    )
+      //<></>
+    //)
 }
 
 export default CountryList
