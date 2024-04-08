@@ -43,6 +43,7 @@ const App = () => {
       <CountryList 
         countriesToShow = {countriesToShow} 
         countryData={countryData} 
+        setCountriesToShow = {setCountriesToShow}
       />
     </>
   )

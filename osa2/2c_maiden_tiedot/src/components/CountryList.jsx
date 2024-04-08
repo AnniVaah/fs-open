@@ -19,7 +19,11 @@ const Country = ({countryData}) => {
   )
 } 
     
-const CountryList = ({countriesToShow, countryData}) => {
+const CountryList = ({countriesToShow, countryData, setCountriesToShow}) => {
+  const showCountry = (country) => {
+    setCountriesToShow([country])
+  }
+
   if (countriesToShow.length>=10){
     return(
       <p>Too many matches. Please, specify your search.</p>
@@ -28,7 +32,12 @@ const CountryList = ({countriesToShow, countryData}) => {
   else if (countriesToShow.length>1){
     return(
       <ul className='countries'>
-        {countriesToShow.map(country => <li key={country}>{country}</li>)}
+        {countriesToShow.map(country => 
+          <li key={country}>
+            {country} 
+            <button onClick={()=>showCountry(country)}>Show</button>
+          </li>)
+        }
       </ul>
     )
   }
