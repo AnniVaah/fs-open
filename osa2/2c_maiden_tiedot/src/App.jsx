@@ -6,13 +6,13 @@ import CountryList from './components/CountryList.jsx'
 const App = () => {
   const [countryNames, setCountryNames] = useState([])
   const [filterText, setFilterText] = useState('')
-  const [countriesToShow, setCountriesToShow] = useState(["Finland"])
-  const [countryData, setCountryData] = useState([])
+  const [countriesToShow, setCountriesToShow] = useState([])
+  const [countryData, setCountryData] = useState()
 
   const handleFilterChange = (event) => {
     const newFilterText=event.target.value
     setFilterText(newFilterText)
-    if (newFilterText !== ''){
+    if (filterText !== ''){
       setCountriesToShow(countryNames.filter(country => country.toLowerCase().includes(newFilterText.toLowerCase())))
     }
     else{
@@ -27,7 +27,6 @@ const App = () => {
   }, [])
 
   useEffect(()=>{
-    console.log('effect2')
     if (countriesToShow.length === 1){
       countryService
         .getOne(countriesToShow[0])
@@ -36,8 +35,6 @@ const App = () => {
         })
     }
   },[countriesToShow])
-  //console.log("Muuttuiko?",countriesToShow)
-  console.log("Muuttuiko?",countryData)
 
   return (
     <>
@@ -50,5 +47,5 @@ const App = () => {
     </>
   )
 }
- // 
+
 export default App
